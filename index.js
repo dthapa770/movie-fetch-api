@@ -1,26 +1,42 @@
-movies =[]
 
-const domSelectors = {
-  container: ".container",
-}
+const sliders = document.querySelector(".container")
+var scroll_per_click;
+var ImagePadding = 20
+
+
 const fetch_api = ()=>{
 fetch('http://localhost:3000/movies')
     // Handle success
-    .then(response => response.json())  // convert to json
-    .then(json => movies=json)    //print data to console
-    .catch(err => console.log('Request Failed', err));
-}
-
-const render =()=>{
-  return `<div class="card">
-  <div class="card-image"></div>
-  <div class="card-text">
-    <h2>Post One</h2>
-    <p>
+    .then(response => { 
+      if (!response.ok){
+        throw Error("Error")
+      }
+      return response.json()
+    })  // convert to json
+    .then(data =>{
+      const html = data.map(
+        movies => {
+          return `<div class="card-wrapper">
+                        <div class = "card-${movies.id}">
+                    <div class="card-image"><img src="${movies.imgUrl}"></div>
+                    <div class="card-text">
+                      <h2>${movies.name}</h2>
+                      <p>${movies.outlineInfo}</p>
+                    
+                    <div>
+                    </div>
+                  </div>`                
+        } 
+      ).join("");
+      sliders.insertAdjacentHTML("afterbegin",html);
+      scroll_per_click = document.querySelector(".card-1").clientWidth+ImagePadding;
+      console.log(scroll_per_click)
+      
      
-    </p>
-  </div>
-  </div>`
-}
+    })
+    .catch(err => console.log('Request Failed', err));
+  }
+
+
 fetch_api()
-console.log(movies)
+

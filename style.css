@@ -1,45 +1,74 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100vh;
-  height: 100vh;
-  display: flex;
-  align-items: center;
+body{
+  height:100vh;
+  width:100%;
+  background-color: wheat;
+  display:flex;
   justify-content: center;
-  overflow: hidden;
-}
-.card {
-  margin: 10px;
-  display: grid;
-  grid-template-columns: 200px;
-  grid-template-rows: 200px 150px ;
-  grid-template-areas: "image" "text";
-  border-radius: 18px;
-  background: white;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
-  font-family: roboto;
-  text-align: center;
+  align-items: center;
+  flex-wrap:wrap;
 }
 
-.card-image {
-  grid-area: image;
-}
-.card-text {
-  grid-area: text;
+.carousel{
+  height: 250px;
+  width:80%;
+  position: relative;
 }
 
+.carousel .switchLeft,
+.carousel .switchRight {
+   color:white;
+   font-weight: bold;
+   height: 100%;
+   width: 45px;
+   line-height: 250px;
+   font-size: 25px;
+   text-align: center;
+   background-color: tomato;
+   top: 0;
+   z-index: 3;
+}
 
-.card-image {
-  grid-area: image;
-  background: url("https://picsum.photos/200");
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+.carousel .switchLeft{
+  position:absolute;
+  left: -50px;
+}
+
+.carousel .switchRight{
+  position:absolute;
+  right: -50px ;
+}
+.container img{
+  min-width: 147px;
+  max-width:147px;
+  height:200px;
   background-size: cover;
+  margin: 5px 10px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  z-index: 2;
+}
+.container{
+  height:250px;
+  width: auto;
+  overflow: scroll;
+  white-space: nowrap;
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 10px !important;
+  display:flex;
+  align-items: center;
+}
+ 
+.card-text{
+  font-size: 10px;
+  width:5%;
+  height:5%;
 }
